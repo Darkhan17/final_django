@@ -4,7 +4,7 @@ from rest_framework import viewsets, permissions, generics
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenVerifyView, TokenRefreshView
 
-from .views import BooksViewSet, JournaltViewSet
+from .views import BooksViewSet, JournaltViewSet, bookDetail, journalDetail
 
 urlpatterns = [
     path('token/login', TokenObtainPairView.as_view(), name='token_obtain_pair'),
@@ -12,6 +12,11 @@ urlpatterns = [
     path('token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     path('books/', BooksViewSet.as_view({'get': 'list', 'post': 'create'}), name='view books'),
     path('journals/', JournaltViewSet.as_view({'get': 'list', 'post': 'create'}), name='view books'),
+    path('books/', BooksViewSet.as_view({'get': 'list', 'post': 'create'}), name='view books'),
+    path('journals/', JournaltViewSet.as_view({'get': 'list', 'post': 'create'}), name='view books'),
+    path('books/<int:bookId>',bookDetail, name='view books'),
+    path('journals/<int:journalId>', journalDetail, name='view books'),
+
     #path('register', RegisterApi.as_view()),
 ]
 
